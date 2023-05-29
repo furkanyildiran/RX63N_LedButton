@@ -1,0 +1,11 @@
+################################################################################
+# Automatically-generated file. Do not edit!
+################################################################################
+
+arg1 = $(1)
+export PATH=C:\ProgramData\GCC for Renesas RX 8.3.0.202202-GNURX-ELF\rx-elf\rx-elf\bin\;C:\ProgramData\GCC for Renesas RX 8.3.0.202202-GNURX-ELF\rx-elf\rx-elf\libexec\gcc\rx-elf\8.3.0.202202-GNURX\;C:\Renesas\e2_studio\eclipse\plugins\com.renesas.ide.exttools.busybox.win32.x86_64_1.3.5.v20220125-0945\bin\;C:\Renesas\e2_studio\eclipse\plugins\com.renesas.ide.exttools.gnumake.win32.x86_64_4.3.0.v20220121-1024\mk\;C:/Renesas/e2_studio/eclipse//plugins/org.eclipse.justj.openjdk.hotspot.jre.full.win32.x86_64_17.0.5.v20221102-0933/jre/bin/server;C:/Renesas/e2_studio/eclipse//plugins/org.eclipse.justj.openjdk.hotspot.jre.full.win32.x86_64_17.0.5.v20221102-0933/jre/bin;C:\ProgramData\GCC for Renesas RX 8.3.0.202202-GNURX-ELF\rx-elf\rx-elf\bin;C:\ProgramData\GCC for Renesas RX 8.3.0.202202-GNURX-ELF\rx-elf\rx-elf\bin;C:\ProgramData\GCC for Renesas RX 8.3.0.202202-GNURX-ELF\rx-elf\rx-elf\bin;C:\Program Files\Common Files\Oracle\Java\javapath;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Windows\System32\OpenSSH\;C:\Program Files (x86)\NVIDIA Corporation\PhysX\Common;C:\TDM-GCC-64\bin;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\WINDOWS\System32\OpenSSH\;C:\Program Files (x86)\STMicroelectronics\STM32 ST-LINK Utility\ST-LINK Utility;C:\Program Files\Microchip\xc8\v2.36\bin;C:\xtensa-lx106-elf\bin;C:\Program Files\Git\cmd;C;C;C:\Users\MONSTER\AppData\Local\Microsoft\WindowsApps;C:\Users\MONSTER\AppData\Local\Programs\Microsoft VS Code\bin;C:\Renesas\e2_studio\eclipse
+export TCINSTALL=C:\ProgramData\GCC for Renesas RX 8.3.0.202202-GNURX-ELF\rx-elf\rx-elf$(call arg1,\)
+export CWD=$(CURDIR)
+export TC_VERSION=8.3.0.202202
+export PWD=$(CURDIR)
+export GCC_VERSION=8.3.0.202202-GNURX

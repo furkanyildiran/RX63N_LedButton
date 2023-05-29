@@ -1,0 +1,3 @@
+r
+loadbin C:\Users\MONSTER\e2_studio\workspace\RX63N_LedButton\HardwareDebug\RX63N_LedButton.bin,0xFFF00000
+g

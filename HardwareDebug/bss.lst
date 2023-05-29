@@ -1,0 +1,127 @@
+   1                             		.file	"bss.c"
+   2                             		.section P,"ax"
+   3                             	.Ltext0:
+   4                             		.section	.text.BSS_Init,"ax",@progbits
+   5                             		.global	_BSS_Init
+   7                             	_BSS_Init:
+   8                             	.LFB0:
+   9                             		.file 1 "../BSS/Src/bss.c"
+   1:../BSS/Src/bss.c **** #include "bss.h"
+   2:../BSS/Src/bss.c **** #define LED1to8_PDR_VAL 				((1 << LED1) | (1 << LED2) | (1 << LED3) | (1 << LED4) | (1 << LED5) | 
+   3:../BSS/Src/bss.c **** #define LED1to8_OUTPUT()				(PORTD.PDR.BYTE |= LED1to8_PDR_VAL)
+   4:../BSS/Src/bss.c **** #define LED9to12_PDR_VAL				((1 << LED9) | (1 << LED10) | (1 << LED11) | (1 << LED12))
+   5:../BSS/Src/bss.c **** #define LED9to12_OUTPUT()				(PORTE.PDR.BYTE |= (LED9to12_PDR_VAL))
+   6:../BSS/Src/bss.c **** #define LEDS_OUTPUT()					do{LED1to8_OUTPUT(); LED9to12_OUTPUT();}while(0)
+   7:../BSS/Src/bss.c **** 
+   8:../BSS/Src/bss.c **** 
+   9:../BSS/Src/bss.c **** void BSS_Init(void){
+  10                             		.loc 1 9 20 view -0
+  10:../BSS/Src/bss.c **** 	LEDS_OUTPUT();
+  11                             		.loc 1 10 2 view .LVU1
+  12                             		.loc 1 10 2 view .LVU2
+  13 0000 FB 5E 0D C0 08          		mov.L	#0x8c00d, r5
+  14 0005 CC 54                   		mov.B	[r5], r4
+  15 0007 F8 54 FF                		mov.B	#-1, [r5]
+  16                             		.loc 1 10 2 view .LVU3
+  17 000a FB 4E 0E C0 08          		mov.L	#0x8c00e, r4
+  18 000f CC 45                   		mov.B	[r4], r5
+  19 0011 65 F5                   		or	#15, r5
+  20 0013 C3 45                   		mov.B	r5, [r4]
+  11:../BSS/Src/bss.c **** }
+  21                             		.loc 1 11 1 is_stmt 0 view .LVU4
+  22 0015 02                      		rts
+  23                             	.LFE0:
+  25                             		.section	.text.LED,"ax",@progbits
+  26                             		.global	_LED
+  28                             	_LED:
+  29                             	.LVL0:
+  30                             	.LFB1:
+  12:../BSS/Src/bss.c **** void LED(LEDS led, LED_Status status){
+  31                             		.loc 1 12 38 is_stmt 1 view -0
+  13:../BSS/Src/bss.c **** 	if(led<9){
+  32                             		.loc 1 13 2 view .LVU6
+  33                             		.loc 1 13 4 is_stmt 0 view .LVU7
+  34 0000 61 81                   		cmp	#8, r1
+  35 0002 24 25                   		bgtu	.L3
+  14:../BSS/Src/bss.c **** 		if(status == LED_ON) PORTD.PODR.BYTE &= ~(1 << led);
+  36                             		.loc 1 14 3 is_stmt 1 view .LVU8
+  37                             		.loc 1 14 5 is_stmt 0 view .LVU9
+  38 0004 61 02                   		cmp	#0, r2
+  39 0006 21 17                   		bne	.L4
+  40                             		.loc 1 14 24 is_stmt 1 discriminator 1 view .LVU10
+  41                             		.loc 1 14 40 is_stmt 0 discriminator 1 view .LVU11
+  42 0008 FB 4E 0D C0 08          		mov.L	#0x8c00d, r4
+  43 000d CD 43 20                		mov.B	32[r4], r3
+  44                             		.loc 1 14 47 discriminator 1 view .LVU12
+  45 0010 66 15                   		mov.L	#1, r5
+  46 0012 FD 62 15                		shll	r1, r5
+  47                             		.loc 1 14 40 discriminator 1 view .LVU13
+  48 0015 7E 05                   		not	r5
+  49 0017 53 35                   		and	r3, r5
+  50 0019 C7 45 20                		mov.B	r5, 32[r4]
+  51 001c 02                      		rts
+  52                             	.L4:
+  15:../BSS/Src/bss.c **** 		else PORTD.PODR.BYTE |= (1 << led);
+  53                             		.loc 1 15 8 is_stmt 1 view .LVU14
+  54                             		.loc 1 15 24 is_stmt 0 view .LVU15
+  55 001d FB 5E 0D C0 08          		mov.L	#0x8c00d, r5
+  56 0022 FC 61 51 20             		bset	r1, 32[r5].B
+  57 0026 02                      		rts
+  58                             	.L3:
+  16:../BSS/Src/bss.c **** 	}else{
+  17:../BSS/Src/bss.c **** 		if(status == LED_ON) PORTE.PODR.BYTE &= ~(1 << led);
+  59                             		.loc 1 17 3 is_stmt 1 view .LVU16
+  60                             		.loc 1 17 5 is_stmt 0 view .LVU17
+  61 0027 61 02                   		cmp	#0, r2
+  62 0029 21 17                   		bne	.L6
+  63                             		.loc 1 17 24 is_stmt 1 discriminator 1 view .LVU18
+  64                             		.loc 1 17 40 is_stmt 0 discriminator 1 view .LVU19
+  65 002b FB 4E 0E C0 08          		mov.L	#0x8c00e, r4
+  66 0030 CD 43 20                		mov.B	32[r4], r3
+  67                             		.loc 1 17 47 discriminator 1 view .LVU20
+  68 0033 66 15                   		mov.L	#1, r5
+  69 0035 FD 62 15                		shll	r1, r5
+  70                             		.loc 1 17 40 discriminator 1 view .LVU21
+  71 0038 7E 05                   		not	r5
+  72 003a 53 35                   		and	r3, r5
+  73 003c C7 45 20                		mov.B	r5, 32[r4]
+  74 003f 02                      		rts
+  75                             	.L6:
+  18:../BSS/Src/bss.c **** 		else PORTE.PODR.BYTE |= (1 << led);
+  76                             		.loc 1 18 8 is_stmt 1 view .LVU22
+  77                             		.loc 1 18 24 is_stmt 0 view .LVU23
+  78 0040 FB 5E 0E C0 08          		mov.L	#0x8c00e, r5
+  79 0045 FC 61 51 20             		bset	r1, 32[r5].B
+  19:../BSS/Src/bss.c **** 	}
+  20:../BSS/Src/bss.c **** }
+  80                             		.loc 1 20 1 view .LVU24
+  81 0049 02                      		rts
+  82                             	.LFE1:
+  84                             		.section	.text.LED_Red,"ax",@progbits
+  85                             		.global	_LED_Red
+  87                             	_LED_Red:
+  88                             	.LVL1:
+  89                             	.LFB2:
+  21:../BSS/Src/bss.c **** 
+  22:../BSS/Src/bss.c **** void LED_Red(LED_Status status){
+  90                             		.loc 1 22 32 is_stmt 1 view -0
+  23:../BSS/Src/bss.c **** 
+  24:../BSS/Src/bss.c **** }
+  91                             		.loc 1 24 1 view .LVU26
+  92 0000 02                      		rts
+  93                             	.LFE2:
+  95                             		.section	.text.LED_Green,"ax",@progbits
+  96                             		.global	_LED_Green
+  98                             	_LED_Green:
+  99                             	.LVL2:
+ 100                             	.LFB3:
+  25:../BSS/Src/bss.c **** void LED_Green(LED_Status status){
+ 101                             		.loc 1 25 34 view -0
+  26:../BSS/Src/bss.c **** 
+  27:../BSS/Src/bss.c **** }
+ 102                             		.loc 1 27 1 view .LVU28
+ 103 0000 02                      		rts
+ 104                             	.LFE3:
+ 156                             	.Letext0:
+ 157                             		.file 2 "C:/Users/MONSTER/e2_studio/workspace/RX63N_LedButton/generate/iodefine.h"
+ 158                             		.file 3 "C:\\Users\\MONSTER\\e2_studio\\workspace\\RX63N_LedButton\\BSS\\Inc/bss.h"
